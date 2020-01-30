@@ -1,9 +1,12 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
 <style lang="less">
-  @import './mixin/public.css';
+@import './mixin/public.css';
+.van-cell-group {
+  margin-bottom: 10px;
+}
 </style>
