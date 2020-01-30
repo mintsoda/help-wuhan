@@ -1,0 +1,244 @@
+/* Reset */
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body,
+select,
+input,
+option {
+  font: 16px/1.5 'Microsoft YaHei', Arial;
+  -webkit-text-size-adjust: none;
+}
+
+ul,
+ol,
+li {
+  list-style-type: none;
+}
+
+em,
+i,
+var {
+  font-style: normal;
+}
+
+input,
+button,
+textarea,
+select {
+  font-size: 16px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  outline: none;
+}
+button {
+  outline: none;
+  border: none;
+}
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+a img {
+  border: 0 none;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: top;
+}
+
+figure,
+figcaption {
+  display: block;
+}
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+input:focus::-webkit-input-placeholder {
+  color: rgba(0, 0, 0, 0);
+}
+
+input::-webkit-input-placeholder {
+  color: #999;
+}
+
+textarea:focus::-webkit-input-placeholder {
+  color: rgba(0, 0, 0, 0);
+}
+
+textarea::-webkit-input-placeholder {
+  color: #999;
+}
+
+input[type='button'],
+input[type='text'],
+input[type='submit'],
+input[type='password'],
+input[type='search'],
+input[type='email'],
+input[type='number'],
+input[type='tel'],
+button,
+textarea {
+  border: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -webkit-border-image: none;
+  border-image: none;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+}
+
+input:focus,
+a {
+  outline: none;
+}
+
+.clearfix:after {
+  content: '';
+  display: block;
+  height: 0;
+  overflow: hidden;
+  clear: both;
+  visibility: hidden;
+}
+
+input::-webkit-input-placeholder {
+  line-height: 1.5em;
+  color: #ccc;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+body {
+  overflow-x: hidden;
+}
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+.container {
+  background: #f3f4f5;
+}
+/* 屏幕适配class */
+.mCss .img-box {
+  top: 2px !important;
+}
+.mCss .border-content {
+  height: 87px !important;
+}
+.mCss .img-info {
+  transform: scale(0.86) !important;
+  margin-top: -27px !important;
+}
+.mCss .luck-box {
+  height: 185px !important;
+}
+.mCss .luck-box .shave-card {
+  margin-top: 2px !important;
+}
+.mCss .to-newList {
+  transform: scale(0.86) translate(-56%, 0) !important;
+  bottom: 40px !important;
+}
+.mCss .no-prize-img {
+  transform: scale(0.86) !important;
+  margin-top: -15px !important;
+}
+.mCss .luck-box .shave-card {
+  transform: scale(0.9) !important;
+  margin-top: 2px !important;
+}
+.smallTag .luck-box {
+  /* height: 150px !important; */
+}
+.smallTag .img-info {
+  transform: scale(0.77) !important;
+  margin-top: -45px !important;
+}
+.smallTag .no-prize-img {
+  margin-top: -20px !important;
+}
+@keyframes pulse {
+  0% {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.4, 1.4, 1.4);
+    transform: scale3d(1.4, 1.4, 1.4);
+  }
+  100% {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+}
+@keyframes heartbeat {
+  0% {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+  100% {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+}
+@keyframes zanIcon {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  50% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+}
+.app-download-box {
+  width: 56px;
+  height: 48px;
+  position: fixed;
+  bottom: 100px;
+  right: 4px;
+}
+.app-download-box .app-download-link {
+  display: block;
+  width: 56px;
+  height: 48px;
+  background: url(https://s.kcimg.cn/topic/images/superman-festival/app-down-load.png) no-repeat;
+  background-size: 56px 48px;
+}
+.app-download-box .close {
+  width: 10px;
+  height: 10px;
+  display: block;
+  position: absolute;
+  top: -9px;
+  right: -4px;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAMAAAAM7l6QAAAAV1BMVEUXGRkAAACYmJj8/PyGh4f////x8fH////////i4uLe3t7Y2trT09P////Hx8exs7OAgoL///////////////////////85Ozv///9sbm5qbGw7PT3///+5kV10AAAAHHRSTlNmAJn0j+np4tnW083Hv7qrjYyFdlM8CHCogoJw+0bgMQAAANZJREFUKM+F09kOgyAQheFpcatrxa3L//7PWahVMKaZc0PCFwRhRi57pr4pjCmafgpzG89Dyp50mI885oCp2q5rKwPkY8wWKBP5JSkBG/gB2V2i3DN4bGzhtsgh7xvYlUencorz0fOcky1nXjLy2fEAft9nHY5Wv/z+MDhOKcWlhuuqV6j9WJJeZILkuwTnq4aZSXrMtsj5PvgYemmoJPJIpaKRglYij1RaCjF0EjxW6TAKKx9Xjqb8mHItyqUqT6I8qFIOf4ppcWqVUlQKWWkDvYmUFvwAIYYdO5pkmRAAAAAASUVORK5CYII=)
+    no-repeat;
+  background-size: 10px 10px;
+}
