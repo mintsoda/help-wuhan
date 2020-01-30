@@ -2,13 +2,14 @@
   <div class="home">
     <div class="list-wrapper">
       <img src="../assets/banner.png" alt="">
-      <van-tabs v-model="active" sticky color="#2272FF" title-active-color="#2272FF" title-inactive-color="#838083">
+      <van-tabs class="tab-list-wrapper" v-model="active" sticky color="#2272FF" title-active-color="#2272FF" title-inactive-color="#838083">
         <van-tab title="物资运输需求">
-          <van-pull-refresh v-model="refreshing" @refresh="onRefresh" :offset="50">
+          <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
             <van-list
+              :offset="50"
               v-model="isLoading"
-              :isFinished="isFinished"
-              isFinished-text="没有更多了"
+              :finished="isFinished"
+              finished-text="没有更多了"
               @load="onLoad"
             >
               <ul class="require-list-wrapper">
@@ -18,26 +19,26 @@
           </van-pull-refresh>
         </van-tab>
         <van-tab title="爱心运力池">
-          <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
-            <van-pull-refresh v-model="refreshing" @refresh="onRefresh" :offset="50">
-              <van-list
-                v-model="isLoading"
-                :isFinished="isFinished"
-                isFinished-text="没有更多了"
-                @load="onLoad"
-              >
-                <ul class="require-list-wrapper">
-                  <list-item v-for="item in list" :key="item"></list-item>
-                </ul>
-              </van-list>
-            </van-pull-refresh>
+          <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
+            <van-list
+              :offset="50"
+              v-model="isLoading"
+              :finished="isFinished"
+              finished-text="没有更多了"
+              @load="onLoad"
+            >
+              <ul class="require-list-wrapper">
+                <list-item v-for="item in list" :key="item"></list-item>
+              </ul>
+            </van-list>
           </van-pull-refresh>
+
         </van-tab>
       </van-tabs>
       <div class="footer">
-        <a href="/app/ntocc/wuhan/demand" class="" style="background: #2272FF;">我找车，提报需求</a>
-        <a href="/app/ntocc/wuhan/supply" class="" style="background: #FF4620;">我有车，驰援武汉</a>
-        <a href="javascript:;"  style="background: rgba(34,114,255,0.1);">分享</a>
+        <div class="button" @click="enterDemand">我找车，提报需求</div>
+        <div class="button" @click="enterSupply">我有车，驰援武汉</div>
+        <div class="button" @click="share">分享</div>
       </div>
     </div>
   </div>
@@ -59,7 +60,17 @@ export default {
     list: []
   }),
   methods: {
+    enterDemand () {
+      this.$router.push('/demand')
+    },
+    enterSupply () {
+      this.$router.push('/supply')
+    },
+    share () {
+
+    },
     onLoad () {
+      console.log(2222)
       setTimeout(() => {
         if (this.refreshing) {
           this.list = []
@@ -70,13 +81,14 @@ export default {
           this.list.push(this.list.length + 1)
         }
         this.isLoading = false
-
+        console.log(this.list.length)
         if (this.list.length >= 40) {
           this.isFinished = true
         }
       }, 1000)
     },
     onRefresh () {
+      console.log(1111)
       // 清空列表数据
       this.isFinished = false
 
@@ -112,7 +124,7 @@ export default {
     box-shadow:0px -1px 0px 0px rgba(246,246,246,1);
   }
 
-  .list-wrapper .footer a {
+  .list-wrapper .footer .button {
     color: #fff;
     font-size: 12px;
     line-height: 36px;
@@ -122,12 +134,16 @@ export default {
     white-space: nowrap;
     text-align: center;
     box-sizing: border-box;
+    background: #FF4620;
   }
-
-  .list-wrapper .footer a:last-child {
+  .list-wrapper .footer .button:first-child {
+    background: #2272FF;
+  }
+  .list-wrapper .footer .button:last-child {
     margin: 0;
     color:rgba(34,114,255,1);
     width: 64px;
+    background: rgba(34,114,255,0.1)
   }
 
   .van-pull-refresh__track {
@@ -135,5 +151,8 @@ export default {
   }
   .van-tabs__line{
     width:30px!important;
+  }
+  .list-wrapper .tab-list-wrapper{
+    margin-bottom: 50px;
   }
 </style>
