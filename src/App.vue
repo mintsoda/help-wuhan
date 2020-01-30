@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
@@ -15,4 +15,7 @@
     url('//at.alicdn.com/t/font_1623582_k92gr7qfm8s.ttf') format('truetype'),
     url('//at.alicdn.com/t/font_1623582_k92gr7qfm8s.svg#wuhan') format('svg');
   }
+.van-cell-group {
+  margin-bottom: 10px;
+}
 </style>
