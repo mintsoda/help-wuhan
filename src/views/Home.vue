@@ -13,7 +13,7 @@
               @load="onLoad"
             >
               <ul class="require-list-wrapper">
-                <list-item v-for="item in list" :key="item"></list-item>
+                <list-item v-for="item in list" itemType="goods" :key="item"></list-item>
               </ul>
             </van-list>
           </van-pull-refresh>
@@ -28,19 +28,28 @@
               @load="onLoad"
             >
               <ul class="require-list-wrapper">
-                <list-item v-for="item in list" :key="item"></list-item>
+                <list-item v-for="item in list" itemType="help" :key="item"></list-item>
               </ul>
             </van-list>
           </van-pull-refresh>
-
         </van-tab>
       </van-tabs>
       <div class="footer">
         <div class="button" @click="enterDemand">我找车，提报需求</div>
         <div class="button" @click="enterSupply">我有车，驰援武汉</div>
-        <div class="button" @click="share">分享</div>
+        <div class="button" @click="shareShow=true">分享</div>
       </div>
     </div>
+    <!--m的分享弹层-->
+    <div class="model" v-if="deviceType!=='weixin'&&shareShow" @scroll.stop  @click="shareShow=!shareShow">
+      <div class="mask" @scroll.stop @touchmove.prevent></div>
+      <div class="share-type-modal">
+        <p>请使用浏览器的分享功能</p>
+        <div class="share-type"><span>分享到:</span><span class="one"></span><span class="two"></span></div>
+      </div>
+    </div>
+    <!--微信的分享弹层-->
+    <div v-if="deviceType==='weixin'&&shareShow" class="wechat-tips" @click="shareShow=!shareShow"></div>
   </div>
 </template>
 
@@ -53,12 +62,20 @@ export default {
     ListItem
   },
   data: () => ({
+    // 分享蒙层是否展示
+    shareShow: false,
     active: 0,
     isLoading: false,
     isFinished: false,
     refreshing: false,
     list: []
   }),
+  created () {
+    // 微信分享
+    this.wxsharePage()
+    // app分享
+    this.appShareBtn()
+  },
   methods: {
     enterDemand () {
       this.$router.push('/demand')
@@ -154,5 +171,99 @@ export default {
   }
   .list-wrapper .tab-list-wrapper{
     margin-bottom: 50px;
+  }
+  /*分享样式*/
+  @font-face {
+    font-family: special;
+    src: url(//at.alicdn.com/t/font_1112743_17m26hvhwqo.eot);
+    src: url(//at.alicdn.com/t/font_1112743_17m26hvhwqo.eot#iefix) format("embedded-opentype"),url(//at.alicdn.com/t/font_1112743_17m26hvhwqo.woff2) format("woff2"),url(//at.alicdn.com/t/font_1112743_17m26hvhwqo.woff) format("woff"),url(//at.alicdn.com/t/font_1112743_17m26hvhwqo.ttf) format("truetype"),url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E") format("svg")
+  }
+  .model{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+  }
+  .mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+  }
+  .share-type-modal {
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    width: 200px;
+    height: 82px;
+    background: #fff;
+    bottom: 40px;
+    border-radius: 5px;
+    padding: 10px;
+    box-sizing: border-box;
+    z-index: 1000;
+  }
+  .share-type-modal p {
+    font-weight: 700;
+    color: #17181a;
+  }
+  .share-type-modal .share-type,.share-type-modal p {
+    font-size: 14px;
+    text-align: left;
+    line-height: 30px;
+  }
+  .share-type-modal .share-type span {
+    font-family: special;
+    font-size: 14px;
+    float: left;
+  }
+  .share-type-modal .share-type .one {
+    width:30px;
+    height: 30px;
+    background: #00b700;
+    border-radius: 5px;
+    text-align: center;
+    margin-left: 10px;
+  }
+  .share-type-modal .share-type .one:after {
+    content: "\e600";
+    font-size: 24px;
+    color: #fff;
+  }
+  .share-type-modal .share-type .two {
+    background: url(https://s.kcimg.cn/m-bigcar/img/wechat.png) no-repeat 50%;
+    background-size: 30px;
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    font-size: 24px;
+  }
+  .share-type-modal:after {
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    content: "";
+    bottom: -8px;
+    width: 0;
+    height: 0;
+    border: 4px solid transparent;
+    border-top: 4px solid #fff;
+  }
+  .wechat-tips{
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.8) url(https://s.kcimg.cn/public/images/wechat-share.png) no-repeat 100% 0;
+    background-size: 205px 216px;
   }
 </style>

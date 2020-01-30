@@ -214,6 +214,10 @@ export default {
       let item = this.requiredData[i]
       this.hideErrorText[item] = true
     }
+    // 微信分享
+    this.wxsharePage()
+    // app分享
+    this.appShareBtn()
   },
   methods: {
     // 提交

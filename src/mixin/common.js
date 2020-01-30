@@ -3,7 +3,11 @@ export default {
   data: () => ({
     // 设备类型
     deviceType: '',
-    topicUrl: 'https://topic.360che.com/m/2020010801/'
+    shareLink: {
+      title: '助力湖北-物流信息共享平台',
+      desc: '物资运输和运力供应共享，众志成城，共同战“疫”',
+      imgUrl: 'https://s.kcimg.cn/topic/images/spring-couplets/share.jpg'
+    }
   }),
   created () {
     this.deviceType = this.getType()
@@ -66,24 +70,24 @@ export default {
     },
     // 分享页面
     wxsharePage () {
-      console.log(window.shareLink.desc)
+      console.log(this.shareLink.desc)
       if (this.deviceType === 'weixin') {
         let wx = window.wx
         let shareUrl = window.location.href.split('#')[0]
         wx.ready(() => {
           wx.onMenuShareTimeline({
-            title: window.shareLink.title, // 分享标题
-            desc: window.shareLink.desc, // 分享描述
+            title: this.shareLink.title, // 分享标题
+            desc: this.shareLink.desc, // 分享描述
             link: shareUrl, // 分享链接
-            imgUrl: window.shareLink.imgUrl, // 分享图标
+            imgUrl: this.shareLink.imgUrl, // 分享图标
             success: () => {
             }
           })
           wx.onMenuShareAppMessage({
-            title: window.shareLink.title, // 分享标题
-            desc: window.shareLink.desc, // 分享描述
+            title: this.shareLink.title, // 分享标题
+            desc: this.shareLink.desc, // 分享描述
             link: shareUrl, // 分享链接
-            imgUrl: window.shareLink.imgUrl, // 分享图标
+            imgUrl: this.shareLink.imgUrl, // 分享图标
             success: () => {
             }
           })
@@ -95,10 +99,10 @@ export default {
         let shareUrl = window.location.href.split('#')[0]
         this.callNativeMethod('onShowShareButton', {
           'isShow': true,
-          title: window.shareLink.title, // 分享标题
-          desc: window.shareLink.desc, // 分享描述
+          title: this.shareLink.title, // 分享标题
+          desc: this.shareLink.desc, // 分享描述
           link: shareUrl, // 分享链接
-          imgUrl: window.shareLink.imgUrl // 分享图标
+          imgUrl: this.shareLink.imgUrl // 分享图标
         })
       }
     },

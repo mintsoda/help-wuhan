@@ -3,7 +3,25 @@
     <router-view />
   </div>
 </template>
-
+<script>
+export default {
+  name: 'App',
+  created () {
+    if (this.deviceType === 'weixin') {
+      // 微信注册微信信息
+      this.wxConfig()
+    }
+  },
+  mounted () {
+    this.connectWebViewJavascriptBridge(bridge => {
+      bridge.init((message, responseCallback) => {})
+    })
+    this.callNativeMethod('onChangeWebTitle', {
+      'changeWebTitle': this.shareLink.title
+    })
+  }
+}
+</script>
 <style lang="less">
   @import './mixin/public.css';
   @font-face {
